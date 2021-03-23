@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Tab from './Tab.vue';
+import Tab from '@/components/container/Tab.vue'
 
 export default {
   name: 'Tabs',

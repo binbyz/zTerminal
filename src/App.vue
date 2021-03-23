@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import Workspace from './components/workspace/Workspace.vue'
-import Aside from './components/aside/Aside.vue'
-import Container from './components/container/Container.vue'
+import Workspace from '@/components/workspace/Workspace.vue'
+import Aside from '@/components/aside/Aside.vue'
+import Container from '@/components/container/Container.vue'
 
 export default {
   name: 'App',

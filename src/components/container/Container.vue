@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Tabs from './Tabs.vue'
-import Explorer from './Explorer.vue'
-import Searchbar from './searchbar/Searchbar.vue'
+import Tabs from '@/components/container/Tabs.vue'
+import Explorer from '@/components/container/Explorer.vue'
+import Searchbar from '@/components/container/searchbar/Searchbar.vue'
 
 export default {
   name: 'Container',
