@@ -1,28 +1,34 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  #app
+    Workspace
+    Aside
+    Container
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Workspace from './components/workspace/Workspace.vue'
+import Aside from './components/aside/Aside.vue'
+import Container from './components/container/Container.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Workspace,
+    Aside,
+    Container,
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~@/assets/scss/common';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100%;
+  background-color: $backcolor;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 </style>
