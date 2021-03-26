@@ -3,10 +3,14 @@
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
-const isDevelopment = process.env.NODE_ENV !== 'production'
+import os from 'os'
 
-let mainWindow
-let backgroundWindow
+const isDevelopment = process.env.NODE_ENV !== 'production'
+const threads = os.cpus().length
+
+let mainWindow = null
+let jobs = []
+let tasks = []
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -46,7 +50,7 @@ async function createWindow() {
 
 async function createBackgroundWindow() {
   const win = new BrowserWindow({ 
-    show: true, 
+    show: false, 
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
     }
@@ -54,12 +58,19 @@ async function createBackgroundWindow() {
 
   try {
     await win.loadURL(`file://${__dirname}/../src/jobs/index.html`)
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   } catch (e) {
     console.error(e)
   }
 
   return win
+}
+
+function doJob() {
+  while (tasks.length > 0 && jobs.length > 0) {
+    let task = tasks.shift()
+    jobs.shift().send(task[0], task[1])
+  }
 }
 
 // Quit when all windows are closed.
@@ -91,7 +102,10 @@ app.on('ready', async () => {
   }
 
   mainWindow = await createWindow()
-  backgroundWindow = await createBackgroundWindow()
+
+  for (let thread = 0; thread < threads; thread++) {
+    await createBackgroundWindow()
+  }
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -109,12 +123,16 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on('background-response', (event, payload) => {
-  console.log('background-response', payload)
-  mainWindow.webContents.send('background-response', payload)
+ipcMain.on('job-ready', (event) => {
+  jobs.push(event.sender)
+  doJob()
 })
 
-ipcMain.on('background-start', (event, payload) => {
-  console.log('background started')
-  backgroundWindow.webContents.send('background-start', payload)
+ipcMain.on('assign-task', (event, payload) => {
+  tasks.push(['task', payload])
+  doJob()
+})
+
+ipcMain.on('success-task', (event, payload) => {
+  console.log(payload)
 })

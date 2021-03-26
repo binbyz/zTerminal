@@ -11,7 +11,7 @@ export default {
   name: 'Searchbar',
   methods: {
     runningJob() {
-      ipcRenderer.send('background-start')
+      ipcRenderer.send('assign-task')
     }
   }
 }
