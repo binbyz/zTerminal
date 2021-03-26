@@ -1,11 +1,19 @@
 <template lang="pug">
   #searchbar
     input#input-global-search(type="text", autofocus, autocomplete="false")
+    button(@click="runningJob") 검색
 </template>
 
 <script>
+import { ipcRenderer } from 'electron'
+
 export default {
-  
+  name: 'Searchbar',
+  methods: {
+    runningJob() {
+      ipcRenderer.send('background-start')
+    }
+  }
 }
 </script>
 

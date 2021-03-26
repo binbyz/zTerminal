@@ -23,7 +23,7 @@ export default {
   align-self: stretch;
   background-color: $backcolor-300;
   padding: $default-box-padding;
-  border-right: 1px solid #000;
+  border-right: 1px solid $bordercolor;
 }
 
 #category {

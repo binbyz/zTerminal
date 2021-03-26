@@ -13,5 +13,6 @@ export default {
 
 #workspace {
   width: 70px;
+  border-right: 1px solid $bordercolor;
 }
 </style>
