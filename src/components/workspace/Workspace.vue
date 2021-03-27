@@ -1,10 +1,20 @@
 <template lang="pug">
   aside#workspace
+    WorkspaceSlot
+    WorkspaceSlot
+    WorkspaceSlot
+    WorkspaceSlot
+    WorkspaceSlot
 </template>
 
 <script>
+import WorkspaceSlot from '@/components/workspace/WorkspaceSlot.vue'
+
 export default {
-  
+  name: 'Workspace',
+  components: {
+    WorkspaceSlot,
+  }
 }
 </script>
 
@@ -13,6 +23,10 @@ export default {
 
 #workspace {
   width: 70px;
-  border-right: 1px solid $bordercolor;
+  background-color: $color-red-200;
+  border-right: 1px solid $color-red;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 </style>

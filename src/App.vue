@@ -25,7 +25,6 @@ export default {
 
 #app {
   min-height: 100%;
-  background-color: $backcolor;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

@@ -1,12 +1,11 @@
 <template lang="pug">
   aside#aside
     ul#category
-      li#bookmark
-        .category-title 즐겨찾기
       li#location
         .category-title 드라이브
-      li#tags
-        .category-title 태그
+        ul.file-tree
+          li
+            
 </template>
 
 <script>
@@ -21,9 +20,8 @@ export default {
 #aside {
   flex: 1 1;
   align-self: stretch;
-  background-color: $backcolor-300;
+  background-color: $color-black-1000;
   padding: $default-box-padding;
-  border-right: 1px solid $bordercolor;
 }
 
 #category {
@@ -32,7 +30,6 @@ export default {
   }
   .category-title {
     font-size: 110%;
-    color: #fff;
   }
 }
 </style>

@@ -29,9 +29,8 @@ export default {
     line-height: 200%;
     font-size: 120%;
     outline: none;
-    background-color: $backcolor-300;
+    background-color: $color-black-300;
     border: none;
-    color: $default-font-color;
     min-width: 250px;
   }
 }

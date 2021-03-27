@@ -36,7 +36,6 @@ export default {
     }
     tbody {
       tr:nth-child(odd) {
-        background-color: $backcolor-300;
       }
     }
   }

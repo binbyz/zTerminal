@@ -26,7 +26,7 @@ export default {
 
 #container {
   flex: 4 1;
-  background-color: $backcolor;
+  background-color: $color-white;
   padding: $default-box-padding;
 
   .inner {
