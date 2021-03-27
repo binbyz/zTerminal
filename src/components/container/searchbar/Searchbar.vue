@@ -11,7 +11,8 @@ export default {
   name: 'Searchbar',
   methods: {
     runningJob() {
-      ipcRenderer.send('assign-task')
+      console.log('runningJob')
+      ipcRenderer.send('assign-task', { method: "drives" })
     }
   }
 }

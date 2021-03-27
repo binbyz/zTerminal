@@ -14,6 +14,7 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.5",
+    "drivelist": "^9.2.4",
     "vue": "^2.6.11"
   },
   "devDependencies": {
