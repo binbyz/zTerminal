@@ -1,8 +1,11 @@
-$default-font-family: 'AppleGothic', 'NanumBarunGothic', 'Roboto', sans-serif;
-$default-font-size: 13px;
+$default-font-family:  'AppleGothic', 'Roboto', sans-serif;
+$en-font-family: 'AppleGothic', 'Roboto', '나눔바른고딕', 'nanum-barun-gothic', 'NanumBarunGothic', sans-serif;
+$default-font-size: 15px;
 
 $color-black: #000000;
 $color-black-300: #383838;
+$color-black-500: #585858;
+$color-black-800: #e3e3e3;
 $color-black-1000: #f6f6f6;
 $color-white: #ffffff;
 $color-yellow: #fcd865;
@@ -10,4 +13,4 @@ $color-orange: #f88e60;
 $color-red: #a30d3d;
 $color-red-200: #BD1E51;
 
-$default-box-padding: 10px 15px;
+$default-box-padding: 15px 15px;

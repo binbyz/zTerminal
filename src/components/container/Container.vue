@@ -1,9 +1,8 @@
 <template lang="pug">
   #container
     .inner
-      Searchbar
-      Tabs
-      Explorer
+      //- Searchbar
+      //- Tabs
 </template>
 
 <script>

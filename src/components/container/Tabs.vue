@@ -1,18 +1,5 @@
 <template lang="pug">
   ul#tabs
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
-    Tab
 </template>
 
 <script>
