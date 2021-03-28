@@ -5,7 +5,7 @@
         .category-title.logo zExplorer
       li#location
         .category-title
-          strong 드라이브 
+          strong 드라이브
           span.count {{ driveCount }}
       FileTree(:trees="drives")
 </template>

@@ -21,7 +21,6 @@ export default {
 
 .file-node {
   font-size: 110%;
-  font-family: $en-font-family;
   padding: 0 5px;
   border-left: 1px solid $color-black-800;
   cursor: pointer;
