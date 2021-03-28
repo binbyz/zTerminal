@@ -21,11 +21,11 @@ export default {
 
 .file-node {
   font-size: 110%;
-  padding: 0 5px;
+  padding: 0 10px;
   border-left: 1px solid $color-black-800;
   cursor: pointer;
   &:hover {
-    background-color: $color-black-800;
+    background-color: $color-black-900;
   }
   > .fa {
     color: $color-yellow;
@@ -34,6 +34,9 @@ export default {
   > .label {
     padding-left: 5px;
     color: $color-black;
+    &:hover {
+      color: $color-blue;
+    }
   }
 }
 </style>
