@@ -1,5 +1,15 @@
 <template lang="pug">
   ul#tabs
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
+    Tab
 </template>
 
 <script>
@@ -14,6 +24,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/scss/_variables';
+
 #tabs {
   display: flex;
   flex-direction: row;

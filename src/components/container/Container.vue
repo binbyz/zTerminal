@@ -1,8 +1,8 @@
 <template lang="pug">
   #container
     .inner
-      //- Searchbar
-      //- Tabs
+      Searchbar
+      Tabs
 </template>
 
 <script>
@@ -26,7 +26,6 @@ export default {
 #container {
   flex: 4 1;
   background-color: $color-white;
-  padding: $default-box-padding;
 
   .inner {
     display: flex;

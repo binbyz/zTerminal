@@ -1,5 +1,5 @@
 <template lang="pug">
-  li.tab 
+  li.tab
     button C:\
 </template>
 
@@ -13,7 +13,7 @@ export default {
 @import '~@/assets/scss/_variables';
 
 .tab {
-  flex: 1 1 110px;
+  flex: 0 1 110px;
   button {
     outline: none;
     border: none;
@@ -22,6 +22,7 @@ export default {
     background-color: transparent;
     text-align: left;
     line-height: 180%;
+    border: 1px solid $color-black-800;
   }
 }
 </style>
