@@ -8,12 +8,12 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   strict: debug,
   state: {
-    fileTree: [],
+    drives: [],
   },
   mutations: {
     updateDrives(state, drives) {
-      state.fileTree = drives
-    }
+      state.drives = drives
+    },
   },
   // asynchronise function
   actions: {

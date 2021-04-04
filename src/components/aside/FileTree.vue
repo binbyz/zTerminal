@@ -1,6 +1,6 @@
 <template lang="pug">
   ul.file-tree
-    li(v-for="tree in fileTree")
+    li(v-for="tree in drives")
       FileNode(:file="tree")
       FileTree(v-if="tree.subTrees.length > 0", :trees="tree.subTrees")
 </template>
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'fileTree',
+      'drives',
     ]),
   },
   methods: {

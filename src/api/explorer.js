@@ -38,3 +38,18 @@ export function getPathInfos(paths) {
     return getPathInfo(path)
   })
 }
+
+export function getPathSeperator() {
+  switch (process.platform) {
+    case 'darwin':
+    case 'aix':
+    case 'freebsd':
+    case 'openbsd':
+    case 'sunos':
+      return '/'
+    case 'win32':
+      return '\\'
+    default:
+      return '/'
+  }
+}
