@@ -6,26 +6,16 @@
       li#location
         .category-title
           strong 드라이브
-          span.count {{ driveCount }}
-      FileTree(:trees="drives")
+      FileTree
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import FileTree from '@/components/aside/FileTree.vue'
 
 export default {
   name: 'Aside',
   components: {
     FileTree,
-  },
-  computed: {
-    ...mapState([
-      'drives',
-    ]),
-    driveCount () {
-      return this.$store.state.drives.length
-    }
   },
 }
 </script>

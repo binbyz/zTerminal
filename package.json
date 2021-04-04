@@ -20,10 +20,12 @@
     "core-js": "^3.6.5",
     "drivelist": "^9.2.4",
     "file-icons-js": "github:websemantics/file-icons-js",
+    "lodash": "^4.17.21",
     "vue": "^2.6.11",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.168",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

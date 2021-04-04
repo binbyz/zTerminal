@@ -28,14 +28,17 @@ export default {
 .explorer {
   table.files {
     width: 100%;
-    tr {
-      line-height: 200%;
+    th {
+      font-size: 90%;
+      font-weight: normal;
     }
     td {
       padding: 0 5px;
+      line-height: 130%;
     }
     tbody {
       tr:nth-child(odd) {
+        background-color: $color-black-900;
       }
     }
   }

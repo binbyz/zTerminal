@@ -1,16 +1,40 @@
-export default {
-  buildFile ({ path, label, isDirectory, created_at = '', modified_at = '', subTrees = [] }) {
-    if (typeof isDirectory === 'undefined') {
-      throw new TypeError(`The Directory Whether property must always be entered.`)
-    }
+import fs from 'fs'
+
+/**
+ * @param {string} path
+ * @return {array}
+ */
+export function getSubTrees(path) {
+  let trees = fs.readdirSync(path)
+  return trees.map(r => `${path}${r}`)
+}
+
+/**
+ * @param {string} path
+ * @return {object}
+ */
+ export function getPathInfo(path) {
+  try {
+    const stats = fs.lstatSync(path)
 
     return {
       path,
-      label,
-      isDirectory,
-      created_at,
-      modified_at,
-      subTrees, 
+      isDirectory: stats.isDirectory(),
+      isFile: stats.isFile(),
+      isSymbolicLink: stats.isSymbolicLink(),
+      subTrees: [],
     }
+  } catch (e) {
+    console.error(e)
   }
+}
+
+/**
+ * @param {Array} paths
+ * @return {Array}
+ */
+export function getPathInfos(paths) {
+  return paths.map(path => {
+    return getPathInfo(path)
+  })
 }

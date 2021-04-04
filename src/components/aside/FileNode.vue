@@ -1,20 +1,8 @@
 <template lang="pug">
   .file-node
-    font-awesome-icon.fa(icon="folder")
-    span.label {{ file.label }}
+    //- font-awesome-icon.fa(icon="folder")
+    span.label(@click="nodeTrigger") {{ file.label }}
 </template>
-
-<script>
-export default {
-  name: 'FileNode',
-  props: {
-    file: {
-      required: true,
-      type: Object,
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/_variables';
@@ -40,3 +28,35 @@ export default {
   }
 }
 </style>
+
+<script>
+import { getSubTrees, getPathInfos } from '@/api/explorer'
+
+export default {
+  name: 'FileNode',
+  props: {
+    file: {
+      required: true,
+      type: Object,
+    }
+  },
+  methods: {
+    nodeTrigger() {
+      if (this.file.isDirectory) {
+        this.expandTree()
+      } else {
+        this.executeFile()
+      }
+    },
+    expandTree() {
+      let subTrees = getSubTrees(this.file.path)
+      subTrees = getPathInfos(subTrees)
+
+      console.log(subTrees)
+    },
+    executeFile() {
+
+    }
+  }
+}
+</script>

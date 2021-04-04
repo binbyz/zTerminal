@@ -2,7 +2,7 @@
   #container
     .inner
       Searchbar
-      Tabs
+      Explorer
 </template>
 
 <script>

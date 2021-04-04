@@ -4,7 +4,6 @@ import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import os from 'os'
-import { list as drivelist } from 'drivelist'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const threads = os.cpus().length
@@ -24,7 +23,7 @@ async function createWindow() {
     width: 1400,
     height: 800,
     webPreferences: {
-      
+
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION, // true
@@ -51,8 +50,8 @@ async function createWindow() {
 }
 
 async function createBackgroundWindow() {
-  const win = new BrowserWindow({ 
-    show: false, 
+  const win = new BrowserWindow({
+    show: false,
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION, // true
       contextIsolation: false,
@@ -110,16 +109,6 @@ app.on('ready', async () => {
 
   for (let thread = 0; thread < 1; thread++) {
     await createBackgroundWindow()
-  }
-
-  try {
-    const drives = await drivelist()
-    
-    drives.forEach(drive => {
-      console.log(drive.mountpoints)
-    })
-  } catch (e) {
-    console.error(e)
   }
 })
 
