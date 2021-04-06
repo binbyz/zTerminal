@@ -31,6 +31,7 @@
 
 <script>
 import { getSubTrees, getPathInfos } from '@/api/explorer'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'FileNode',
@@ -41,6 +42,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'addSubTrees',
+    ]),
     nodeTrigger() {
       if (this.file.isDirectory) {
         this.expandTree()
@@ -52,7 +56,10 @@ export default {
       let subTrees = getSubTrees(this.file.path)
       subTrees = getPathInfos(subTrees)
 
-      console.log(subTrees)
+      this.addSubTrees({
+        parentPath: this.file.path,
+        subTrees,
+      })
     },
     executeFile() {
 

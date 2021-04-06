@@ -6,19 +6,8 @@
       li#location
         .category-title
           strong 드라이브
-      FileTree
+      FileTree(:trees="drives")
 </template>
-
-<script>
-import FileTree from '@/components/aside/FileTree.vue'
-
-export default {
-  name: 'Aside',
-  components: {
-    FileTree,
-  },
-}
-</script>
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/_variables';
@@ -54,3 +43,20 @@ export default {
   }
 }
 </style>
+
+<script>
+import { mapState } from 'vuex'
+import FileTree from '@/components/aside/FileTree.vue'
+
+export default {
+  name: 'Aside',
+  components: {
+    FileTree,
+  },
+  computed: {
+    ...mapState([
+      'drives',
+    ])
+  },
+}
+</script>

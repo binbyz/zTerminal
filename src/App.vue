@@ -10,13 +10,24 @@ import Workspace from '@/components/workspace/Workspace.vue'
 import Aside from '@/components/aside/Aside.vue'
 import Container from '@/components/container/Container.vue'
 
+import { mapMutations } from 'vuex'
+import { collectDrives } from '@/api/explorer'
+
 export default {
   name: 'App',
   components: {
     Workspace,
     Aside,
     Container,
-  }
+  },
+  methods: {
+    ...mapMutations([
+      'updateDrives',
+    ]),
+  },
+  mounted() {
+    collectDrives().then(r => this.updateDrives(r))
+  },
 }
 </script>
 
