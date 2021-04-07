@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import find from 'lodash/find'
+import path from 'path'
+import { splitPath, getPathSeperator } from '@/api/explorer'
 
 Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
@@ -16,19 +18,31 @@ export default new Vuex.Store({
       state.drives = drives
     },
     addSubTrees(state, { parentPath, subTrees }) { // eslint-disable-line
+      const seperator = getPathSeperator()
       let cursor = state.drives
       let found = undefined
+      let paths = splitPath(parentPath)
 
-      while (found == undefined) {
-        found = find(cursor, o => o.path == parentPath) // Returns the matched element, else undefined.
+      if (paths.length == 1) {
+        found = find(cursor, r => r.path == paths[0])
+      } else {
+        for (let p = 0; p < paths.length; p++) {
+          let diff = paths.slice(0, (p + 1)).join(seperator)
+          diff = path.resolve(diff)
 
-        console.log(cursor)
-        cursor = cursor.subTrees
+          cursor = find(cursor, r => r.path == diff)
+
+          if (p == paths.length - 1) {
+            found = cursor
+          } else {
+            cursor = cursor.subTrees
+          }
+        }
       }
 
-      // console.log(parentPath)
-      // console.log('found', found)
-      found.subTrees = subTrees
+      if (found !== undefined) {
+        found.subTrees = subTrees
+      }
     },
   },
   // asynchronise function
@@ -36,3 +50,4 @@ export default new Vuex.Store({
 
   }
 })
+
