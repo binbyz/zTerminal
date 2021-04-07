@@ -22,6 +22,7 @@ export default new Vuex.Store({
       let cursor = state.drives
       let found = undefined
       let paths = splitPath(parentPath)
+      const diffMax = paths.length - 1
 
       if (paths.length == 1) {
         found = find(cursor, r => r.path == paths[0])
@@ -32,7 +33,7 @@ export default new Vuex.Store({
 
           cursor = find(cursor, r => r.path == diff)
 
-          if (p == paths.length - 1) {
+          if (p == diffMax) {
             found = cursor
           } else {
             cursor = cursor.subTrees
