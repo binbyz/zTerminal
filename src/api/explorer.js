@@ -106,6 +106,10 @@ export function getPathSeperator() {
   }
 }
 
+export function isWindows() {
+  return (process.platform == 'win32') ? true : false
+}
+
 /**
  * @param {string} path
  * @return {string}
@@ -114,4 +118,24 @@ export function extractRootDrive(path) {
   const seperator = getPathSeperator()
 
   return path.split(seperator).slice(0, 2).join(seperator)
+}
+
+/**
+ * @param {string} path
+ * @return {Array}
+ * @example
+ *   ["", ""] => ["/"]
+ *   ["", "Applications"]
+ *   ["", "Applications", "Directories"]
+ *   ["C:", "Program FIles", "Blizzard"]
+ */
+export function splitPath(path) {
+  let paths = path.split(getPathSeperator())
+
+  if (!isWindows()) {
+    paths[0] = getPathSeperator()
+    paths = paths.filter(r => !!r)
+  }
+
+  return paths
 }
