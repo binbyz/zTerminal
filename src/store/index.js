@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { cursorTo } from '@/api/explorer'
+import { createWorkspace } from '@/api/workspace'
 import isUndefined from 'lodash/isUndefined'
 
 Vue.use(Vuex)
@@ -36,6 +37,12 @@ export default new Vuex.Store({
       } else {
         found.isExpanded = tobe
       }
+    },
+    changeWorkspace(state, { slot }) {
+      state.workspaces.cursor = state.workspaces.slots[slot]
+    },
+    createWorkspace(state, { fpath }) {
+      state.workspaces.slots.push(createWorkspace(fpath))
     },
   },
   // asynchronise function
