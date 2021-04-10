@@ -1,4 +1,4 @@
-# zexplorer
+# zTerminal
 
 ## Project setup
 ```

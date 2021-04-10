@@ -2,7 +2,7 @@
   aside#aside(style="width: 500px")
     ul#category
       li#logo
-        .category-title.logo zExplorer
+        .category-title.logo zTerminal
       li#location
         .category-title
           strong 드라이브
