@@ -1,10 +1,11 @@
 <template lang="pug">
   aside#workspace
-    WorkspaceSlot
-    WorkspaceSlot
-    WorkspaceSlot
-    WorkspaceSlot
-    WorkspaceSlot
+    .items
+      WorkspaceSlot
+      WorkspaceSlot
+      WorkspaceSlot
+      WorkspaceSlot
+      WorkspaceSlot
 </template>
 
 <script>
@@ -22,11 +23,15 @@ export default {
 @import '~@/assets/scss/_variables';
 
 #workspace {
-  width: 70px;
+  flex: 0 1 70px;
+  min-width: 70px;
+  max-width: 70px;
   background-color: $color-red-200;
   border-right: 1px solid $color-red;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+  .items {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
 }
 </style>

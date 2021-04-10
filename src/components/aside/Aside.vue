@@ -1,5 +1,5 @@
 <template lang="pug">
-  aside#aside
+  aside#aside(style="width: 500px")
     ul#category
       li#logo
         .category-title.logo zExplorer
@@ -15,6 +15,7 @@
 
 #aside {
   flex: 1 1;
+  min-width: 100px;
   align-self: stretch;
   padding: $default-box-padding;
   background-color: $color-black-1000;

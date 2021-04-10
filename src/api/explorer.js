@@ -2,6 +2,9 @@ import fs from 'fs'
 import { list as drivelist } from 'drivelist'
 import uniqBy from 'lodash/uniqBy'
 import merge from 'lodash/merge'
+import { getClass } from 'file-icons-js'
+import find from 'lodash/find'
+import path from 'path'
 
 export async function collectDrives() {
   let drives = await drivelist()
@@ -41,16 +44,16 @@ export async function collectDrives() {
  * @param {string} path
  * @return {array}
  */
-export function getSubTrees(path) {
-  let trees = fs.readdirSync(path)
+export function getSubTrees(fpath) {
+  let trees = fs.readdirSync(fpath)
   const seperator = getPathSeperator()
-  const pathTest = new RegExp(`${seperator}$`).test(path)
+  const pathTest = new RegExp(`${seperator}$`).test(fpath)
 
   return trees.map(r => {
     if (pathTest) {
-      return `${path}${r}`
+      return `${fpath}${r}`
     } else {
-      return `${path}${seperator}${r}`
+      return `${fpath}${seperator}${r}`
     }
   })
 }
@@ -59,14 +62,16 @@ export function getSubTrees(path) {
  * @param {string} path
  * @return {object}
  */
- export function getPathInfo(path) {
+ export function getPathInfo(fpath) {
   try {
-    const stats = fs.lstatSync(path)
-    const label = path.split(getPathSeperator()).slice(-1)[0] // aka filename
+    const stats = fs.lstatSync(fpath)
+    const label = fpath.split(getPathSeperator()).slice(-1)[0] // aka filename
+    const iconClass = getClass(fpath)
 
     return {
       label,
-      path,
+      iconClass,
+      path: fpath,
       isDirectory: stats.isDirectory(),
       isFile: stats.isFile(),
       isSymbolicLink: stats.isSymbolicLink(),
@@ -75,6 +80,7 @@ export function getSubTrees(path) {
       modifiedAt: stats.mtime,
       accessedAt: stats.atime,
       statusChangedAt: stats.ctime,
+      isExpanded: false,
     }
   } catch (e) {
     console.error(`No Such File: ${path}`)
@@ -86,8 +92,8 @@ export function getSubTrees(path) {
  * @return {Array}
  */
 export function getPathInfos(paths) {
-  return paths.map(path => {
-    return getPathInfo(path)
+  return paths.map(fpath => {
+    return getPathInfo(fpath)
   })
 }
 
@@ -114,10 +120,10 @@ export function isWindows() {
  * @param {string} path
  * @return {string}
  */
-export function extractRootDrive(path) {
+export function extractRootDrive(fpath) {
   const seperator = getPathSeperator()
 
-  return path.split(seperator).slice(0, 2).join(seperator)
+  return fpath.split(seperator).slice(0, 2).join(seperator)
 }
 
 /**
@@ -129,8 +135,8 @@ export function extractRootDrive(path) {
  *   ["", "Applications", "Directories"]
  *   ["C:", "Program FIles", "Blizzard"]
  */
-export function splitPath(path) {
-  let paths = path.split(getPathSeperator())
+export function splitPath(fpath) {
+  let paths = fpath.split(getPathSeperator())
 
   if (!isWindows()) {
     paths[0] = getPathSeperator()
@@ -138,4 +144,37 @@ export function splitPath(path) {
   }
 
   return paths
+}
+
+/**
+ * @param Object root
+ * @param String findPath
+ * @returns Object|undefined
+ */
+export function cursorTo(root, fpath) {
+  const seperator = getPathSeperator()
+
+  let cursor = root
+  let found = undefined
+  let paths = splitPath(fpath)
+  const diffMax = paths.length - 1
+
+  if (paths.length == 1) {
+    found = find(cursor, r => r.path == paths[0])
+  } else {
+    for (let p = 0; p < paths.length; p++) {
+      let diff = paths.slice(0, (p + 1)).join(seperator)
+      diff = path.resolve(diff)
+
+      cursor = find(cursor, r => r.path == diff)
+
+      if (p == diffMax) {
+        found = cursor
+      } else {
+        cursor = cursor.subTrees
+      }
+    }
+  }
+
+  return found
 }

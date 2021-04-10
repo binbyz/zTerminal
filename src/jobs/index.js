@@ -1,9 +1,12 @@
 const { ipcRenderer } = require('electron')
-const explorer = require('./zExplorer')
+
+console.log(ipcRenderer)
+// const remote = require('electron').remote;
+// console.log(remote)
 
 /**
- * @param {boolean} status 
- * @param {object|nullable} payload 
+ * @param {boolean} status
+ * @param {object|nullable} payload
  * @returns object
  */
 function result(status, payload = null) {

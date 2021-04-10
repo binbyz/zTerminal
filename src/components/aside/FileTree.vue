@@ -2,7 +2,7 @@
   ul.file-tree
     li(v-for="tree in trees")
       FileNode(:file="tree")
-      FileTree(v-if="tree.subTrees.length > 0", :trees="tree.subTrees")
+      FileTree(v-if="tree.isExpanded", :trees="tree.subTrees")
 </template>
 
 <style lang="scss" scoped>

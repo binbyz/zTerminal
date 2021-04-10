@@ -1,6 +1,7 @@
 <template lang="pug">
   .file-node
     //- font-awesome-icon.fa(icon="folder")
+    i(:class="file.iconClass")
     span.label(@click="nodeTrigger") {{ file.label }}
 </template>
 
@@ -8,10 +9,13 @@
 @import '~@/assets/scss/_variables';
 
 .file-node {
-  font-size: 110%;
+  font-size: 90%;
   padding: 0 10px;
   border-left: 1px solid $color-black-800;
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     background-color: $color-black-900;
   }
@@ -44,6 +48,7 @@ export default {
   methods: {
     ...mapMutations([
       'addSubTrees',
+      'toggleTree',
     ]),
     nodeTrigger() {
       if (this.file.isDirectory) {
@@ -56,14 +61,24 @@ export default {
       let subTrees = getSubTrees(this.file.path)
       subTrees = getPathInfos(subTrees)
 
-      this.addSubTrees({
-        parentPath: this.file.path,
-        subTrees,
+      // TODO 현재 파일의 `subTrees` 새로고침 구현
+      if (!this.file.subTrees.length) {
+        this.addSubTrees({
+          fpath: this.file.path,
+          subTrees,
+        })
+      }
+
+      this.toggleTree({
+        fpath: this.file.path,
       })
     },
     executeFile() {
 
-    }
+    },
+  },
+  mounted() {
+    console.log(this.file)
   }
 }
 </script>
