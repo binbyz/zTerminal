@@ -1,23 +1,12 @@
 <template lang="pug">
   aside#workspace
     .items
-      WorkspaceSlot
-      WorkspaceSlot
-      WorkspaceSlot
-      WorkspaceSlot
-      WorkspaceSlot
+      WorkspaceSlot(
+        v-for="(slot, index) in workspaces.slots",
+        :workspace="slot",
+        :wsIndex="index"
+      )
 </template>
-
-<script>
-import WorkspaceSlot from '@/components/workspace/WorkspaceSlot.vue'
-
-export default {
-  name: 'Workspace',
-  components: {
-    WorkspaceSlot,
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/_variables';
@@ -35,3 +24,36 @@ export default {
   }
 }
 </style>
+
+<script>
+import WorkspaceSlot from '@/components/workspace/WorkspaceSlot.vue'
+import { mapState, mapMutations } from 'vuex'
+import isUndefined from 'lodash/isUndefined'
+
+export default {
+  name: 'Workspace',
+  components: {
+    WorkspaceSlot,
+  },
+  computed: {
+    ...mapState([
+      'workspaces',
+    ]),
+  },
+  methods: {
+    ...mapMutations([
+      'changeWorkspace',
+      'createWorkspace',
+    ]),
+  },
+  mounted() {
+    if (this.workspaces.slots.length == 0) {
+      this.createWorkspace()
+    }
+
+    if (isUndefined(this.workspaces.cursor)) {
+      this.changeWorkspace({ slot: 0 })
+    }
+  },
+}
+</script>

@@ -151,7 +151,7 @@ export function splitPath(fpath) {
  * @param String findPath
  * @returns Object|undefined
  */
-export function cursorTo(root, fpath) {
+export function findTreePath(root, fpath) {
   const seperator = getPathSeperator()
 
   let cursor = root

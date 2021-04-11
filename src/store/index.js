@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { cursorTo } from '@/api/explorer'
+import { findTreePath } from '@/api/explorer'
 import { createWorkspace } from '@/api/workspace'
 import isUndefined from 'lodash/isUndefined'
 
@@ -22,14 +22,14 @@ export default new Vuex.Store({
       state.drives = drives
     },
     addSubTrees(state, { fpath, subTrees }) {
-      let found = cursorTo(state.drives, fpath)
+      let found = findTreePath(state.drives, fpath)
 
       if (found !== undefined) {
         found.subTrees = subTrees
       }
     },
     toggleTree(state, { fpath, show }) {
-      let found = cursorTo(state.drives, fpath)
+      let found = findTreePath(state.drives, fpath)
       let tobe = !found.isExpanded
 
       if (!isUndefined(show)) {
@@ -41,13 +41,13 @@ export default new Vuex.Store({
     changeWorkspace(state, { slot }) {
       state.workspaces.cursor = state.workspaces.slots[slot]
     },
-    createWorkspace(state, { fpath }) {
-      state.workspaces.slots.push(createWorkspace(fpath))
+    createWorkspace(state, payload) {
+      state.workspaces.slots.push(createWorkspace(payload))
     },
   },
   // asynchronise function
   actions: {
 
-  }
+  },
 })
 

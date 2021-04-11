@@ -5,32 +5,33 @@ import isUndefined from 'lodash/isUndefined'
  * @param {string} default path
  * @returns
  */
-export function createWorkspace(fpath) {
-  fpath = fpath || undefined
-  const pathInfo = isUndefined(fpath) ? undefined : getPathInfo(fpath)
+export function createWorkspace(payload = {}) {
+  const pathInfo = 'path' in payload ? getPathInfo(payload.path) : undefined
+  const slotName = payload?.slotName // if noset, undefined
 
-  let workspaceProto = createFinderProto()
+  let workspaceProto = createWorkspaceSlotProto()
+
+  if (!isUndefined(slotName)) {
+    workspaceProto.slotName = slotName
+  }
 
   if (!isUndefined(pathInfo)) {
-    workspaceProto = {
-      ...workspaceProto,
-      ...pathInfo,
-    }
-  } else {
-    workspaceProto.path = undefined
+    workspaceProto.pathInfo = pathInfo
   }
 
   return workspaceProto
 }
 
-function createFinderProto() {
+function createWorkspaceSlotProto() {
   return {
-    word: undefined,
+    slotName: 'SLOT',
+    search: undefined,
     filters: {
       path: undefined,
       filetype: undefined,
     },
     histories: [],
     results: [],
+    pathInfo: undefined,
   }
 }

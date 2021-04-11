@@ -1,12 +1,6 @@
 <template lang="pug">
-  button.workspace-slot SLOT
+  button.workspace-slot(@click="changeWorkspace({ slot: wsIndex })") SLOT
 </template>
-
-<script>
-export default {
-  name: 'WorkspaceSlot',
-}
-</script>
 
 <style lang="scss" scoped>
 @import '~@/assets/scss/_variables';
@@ -23,3 +17,26 @@ button.workspace-slot {
   cursor: pointer;
 }
 </style>
+
+<script>
+import { mapMutations } from 'vuex'
+
+export default {
+  name: 'WorkspaceSlot',
+  props: {
+    workspace: {
+      required: true,
+      type: Object,
+    },
+    wsIndex: {
+      required: true,
+      type: Number,
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'changeWorkspace',
+    ]),
+  },
+}
+</script>
