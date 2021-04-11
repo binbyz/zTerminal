@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.workspace-slot(@click="changeWorkspace({ slot: wsIndex })") SLOT
+  button.workspace-slot(@click="changeWorkspace({ slot: wsIndex })") {{ workspace.slotName }}
 </template>
 
 <style lang="scss" scoped>

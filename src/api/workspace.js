@@ -25,13 +25,19 @@ export function createWorkspace(payload = {}) {
 function createWorkspaceSlotProto() {
   return {
     slotName: 'SLOT',
-    search: undefined,
-    filters: {
-      path: undefined,
-      filetype: undefined,
+    slotProperties: {
+      backgroundColor: undefined,
+      foregroundColor: undefined,
     },
-    histories: [],
-    results: [],
+    search: {
+      word: undefined,
+      filters: {
+        path: undefined,
+        filetype: undefined,
+      },
+      histories: [],
+      results: [],
+    },
     pathInfo: undefined,
   }
 }
