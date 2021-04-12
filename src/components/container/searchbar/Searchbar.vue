@@ -6,20 +6,14 @@
         font-awesome-icon.fa(icon="search")
 </template>
 
-<script>
-export default {
-  name: 'Searchbar',
-  methods: {
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 @import '~@/assets/scss/_variables';
 
 #searchbar {
+  flex: 0 1 62px;
   width: 575px;
   padding: $default-box-padding;
+  margin: 0 auto;
   form {
     width: 100%;
     position: relative;
@@ -55,3 +49,11 @@ export default {
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'Searchbar',
+  methods: {
+  }
+}
+</script>

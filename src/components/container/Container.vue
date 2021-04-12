@@ -2,20 +2,22 @@
   #container
     .inner
       Searchbar
-      Explorer
+      Terminal
 </template>
 
 <script>
 import Tabs from '@/components/container/Tabs.vue'
-import Explorer from '@/components/container/Explorer.vue'
 import Searchbar from '@/components/container/searchbar/Searchbar.vue'
+import Explorer from '@/components/container/Explorer.vue'
+import Terminal from '@/components/container/terminal/Terminal.vue'
 
 export default {
   name: 'Container',
   components: {
     Tabs,
-    Explorer,
     Searchbar,
+    Explorer,
+    Terminal,
   }
 }
 </script>
@@ -30,6 +32,7 @@ export default {
   .inner {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 }
 </style>

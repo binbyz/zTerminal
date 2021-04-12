@@ -60,7 +60,7 @@ async function createBackgroundWindow() {
 
   try {
     await win.loadURL(`file://${__dirname}/../src/jobs/index.html`)
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   } catch (e) {
     console.error(e)
   }

@@ -5,6 +5,7 @@
         v-for="(slot, index) in workspaces.slots",
         :workspace="slot",
         :wsIndex="index"
+        :key="index"
       )
 </template>
 

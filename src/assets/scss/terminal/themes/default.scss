@@ -1,0 +1,10 @@
+.terminal-theme {
+  padding: 10px;
+  &.default {
+    background-color: #343434;
+    .pipeline {
+      color: #eaeaea;
+      line-height: 130%;
+    }
+  }
+}
