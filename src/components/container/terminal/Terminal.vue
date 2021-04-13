@@ -26,12 +26,17 @@
 <script>
 import Pipeline from '@/components/container/terminal/Pipeline.vue'
 import Prompt from '@/components/container/terminal/Prompt.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Terminal',
   components: {
     Pipeline,
     Prompt,
+  },
+  computed: {
+    ...mapState([
+    ]),
   },
 }
 </script>

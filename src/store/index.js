@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { findTreePath } from '@/api/explorer'
+import { findTreePath, getPathInfo } from '@/api/explorer'
 import { createWorkspace } from '@/api/workspace'
 import isUndefined from 'lodash/isUndefined'
 
@@ -43,6 +43,9 @@ export default new Vuex.Store({
     },
     createWorkspace(state, payload) {
       state.workspaces.slots.push(createWorkspace(payload))
+    },
+    changeCursorPath(state, { fpath }) {
+      state.workspaces.cursor.pathInfo = getPathInfo(fpath)
     },
   },
   // asynchronise function

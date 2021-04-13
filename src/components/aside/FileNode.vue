@@ -49,6 +49,7 @@ export default {
     ...mapMutations([
       'addSubTrees',
       'toggleTree',
+      'changeCursorPath',
     ]),
     nodeTrigger() {
       if (this.file.isDirectory) {
@@ -63,15 +64,11 @@ export default {
 
       // TODO 현재 파일의 `subTrees` 새로고침 구현
       if (!this.file.subTrees.length) {
-        this.addSubTrees({
-          fpath: this.file.path,
-          subTrees,
-        })
+        this.addSubTrees({ fpath: this.file.path, subTrees })
       }
 
-      this.toggleTree({
-        fpath: this.file.path,
-      })
+      this.toggleTree({ fpath: this.file.path })
+      this.changeCursorPath({ fpath: this.file.path })
     },
     executeFile() {
 
