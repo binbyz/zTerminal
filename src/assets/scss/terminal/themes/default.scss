@@ -8,6 +8,40 @@
     }
     .prompt {
       color: #eaeaea;
+      .path-info {
+        line-height: 130%;
+        .arr-block {
+          display: inline-block;
+          background-color: #000;
+          padding: 0 5px 0 5px;
+          &.current-path {
+            background-color: #2a47c1;
+            color: #fff;
+          }
+        }
+      }
+      .command-line {
+        margin-top: 5px;
+        &::after {
+          display: block;
+          content: "";
+          clear: both;
+        }
+        span.prefix {
+          display: block;
+          float: left;
+          width: 20px;
+          text-align: center;
+        }
+        span.command {
+          display: block;
+          float: left;
+          height: 100%;
+          width: calc(100% - 20px);
+          outline: none;
+          caret-color: #c8c33f;
+        }
+      }
     }
   }
 }
