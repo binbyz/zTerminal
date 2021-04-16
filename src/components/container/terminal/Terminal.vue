@@ -1,17 +1,7 @@
 <template lang="pug">
   .terminal.terminal-theme.default
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Pipeline asdfasdf
-    Prompt
+    Pipeline(v-for="pipeline in pipelines") {{ pipeline }}
+    Prompt(@append-pipelines="appendPipelines")
 </template>
 
 <style lang="scss">
@@ -26,7 +16,6 @@
 <script>
 import Pipeline from '@/components/container/terminal/Pipeline.vue'
 import Prompt from '@/components/container/terminal/Prompt.vue'
-import { mapState } from 'vuex'
 
 export default {
   name: 'Terminal',
@@ -34,9 +23,19 @@ export default {
     Pipeline,
     Prompt,
   },
-  computed: {
-    ...mapState([
-    ]),
+  data() {
+    return {
+      pipelines: [],
+    }
   },
+  methods: {
+    appendPipelines(result) {
+      this.pipelines = this.pipelines.concat(
+        result.split(/[\r\n]/g)
+      )
+
+      console.log(this.pipelines)
+    }
+  }
 }
 </script>

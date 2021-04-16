@@ -53,7 +53,7 @@ export default {
     }
 
     if (isUndefined(this.workspaces.cursor)) {
-      this.changeWorkspace({ slot: 0 })
+      this.changeWorkspace({ slotIndex: 0 })
     }
   },
 }

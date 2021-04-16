@@ -33,13 +33,23 @@
           width: 20px;
           text-align: center;
         }
-        span.command {
-          display: block;
-          float: left;
-          height: 100%;
-          width: calc(100% - 20px);
-          outline: none;
-          caret-color: #c8c33f;
+        form.command-form {
+          legend {
+            display: none;
+          }
+          textarea.command {
+            display: block;
+            float: left;
+            height: 100%;
+            width: calc(100% - 20px);
+            outline: none;
+            color: #fff;
+            // caret-color: #c8c33f;
+            background-color: transparent;
+            border: none;
+            box-sizing: border-box;
+            resize: none;
+          }
         }
       }
     }

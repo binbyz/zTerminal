@@ -14,7 +14,7 @@ export default new Vuex.Store({
     drives: [],
     workspaces: {
       slots: [],
-      cursor: undefined,
+      cursor: 0,
     },
   },
   mutations: {
@@ -38,14 +38,14 @@ export default new Vuex.Store({
         found.isExpanded = tobe
       }
     },
-    changeWorkspace(state, { slot }) {
-      state.workspaces.cursor = state.workspaces.slots[slot]
+    changeWorkspace(state, { slotIndex }) {
+      state.workspaces.cursor = parseInt(slotIndex, 10)
     },
     createWorkspace(state, payload) {
       state.workspaces.slots.push(createWorkspace(payload))
     },
     changeCursorPath(state, { fpath }) {
-      state.workspaces.cursor.pathInfo = getPathInfo(fpath)
+      state.workspaces.slots[state.workspaces.cursor].pathInfo = getPathInfo(fpath)
     },
   },
   // asynchronise function

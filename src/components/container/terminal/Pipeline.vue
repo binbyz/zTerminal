@@ -1,5 +1,5 @@
 <template lang="pug">
-  span.pipeline
+  pre.pipeline
     slot
 </template>
 
